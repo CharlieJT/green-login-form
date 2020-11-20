@@ -1,0 +1,27 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: transparent;
+    width: 90%;
+    left: 5%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    max-height: 85vh;
+}
+
+
+@media screen and (min-width: 575px) {
+    .Modal {
+        width: 70%;
+        left: 15%;
+        top: 40%;
+    }
+}
+
+@media screen and (min-width: 767px) {
+    .Modal {
+        width: 700px;
+        left: calc(50% - 350px);
+    }
+}
