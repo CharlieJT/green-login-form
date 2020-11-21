@@ -50,12 +50,14 @@ const App = () => {
 		e.preventDefault();
 		const currentEmailValue = emailStateValue;
 		const currentRememberedDevice = rememberedDevice;
-		setSubmitForm({
-			submissionState: true,
-			emailValue: currentEmailValue,
-			deviceRemembered: currentRememberedDevice
-		});
-		initialStateHandler();
+		if (emailStateValue) {
+			setSubmitForm({
+				submissionState: true,
+				emailValue: currentEmailValue,
+				deviceRemembered: currentRememberedDevice
+			});
+			initialStateHandler();
+		}
 	}
 
 	// Form submission state is set back to false so form can be done again.
