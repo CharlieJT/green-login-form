@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Favicon from 'react-favicon';
+import GreenLogo from './logos/logo-r.svg';
 
 ReactDOM.render(
   <React.StrictMode>
+    <Favicon url={GreenLogo} />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
