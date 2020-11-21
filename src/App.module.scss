@@ -1,0 +1,51 @@
+@import './variables.module.scss';
+
+.App {
+  .MainLogo {
+    width: 120px;
+  }
+  .LoginFormHeading {
+    font-weight: 900;
+    font-size: 2rem;
+    color: $primary-color;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+  }
+  .MutedText {
+    color: $secondary-color;
+    margin-top: 0;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+  }
+  .LoginForm {
+    display: flex;
+    flex-direction: column;
+    .RememberMeCheckbox {
+      display: flex;
+      align-items: center;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+      input[type="checkbox"] {
+        margin: 0 10px 2px 0;
+        height: 18px;
+        width: 18px;
+      }
+      span {
+        font-size: .8rem;
+      }
+    }
+  }
+  .InputEnteredText {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+    .FormSubmissionList {
+      list-style-type: none;
+      padding: 0;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+

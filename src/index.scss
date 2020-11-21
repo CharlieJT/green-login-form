@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'montserrat-regular';
+  src: url(fonts/Montserrat-Regular.ttf)
+}
+
+@font-face {
+  font-family: 'montserrat-bold';
+  src: url(fonts/Montserrat-Bold.ttf)
+}
+
+body {
+  margin: 0;
+  font-family: montserrat-regular, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
