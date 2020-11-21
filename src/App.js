@@ -8,7 +8,7 @@ import Aux from './hoc/ReactAux';
 
 const App = () => {
 
-	// Input References
+	// Input Referrences
 	const inputRef = useRef();
 	const checkRef = useRef();
 
@@ -18,6 +18,7 @@ const App = () => {
 	const [emailValidity, setEmailValidity] = useState(false);
 	const [validForm, setValidForm] = useState(false);
 	const [touched, setTouched] = useState(false);
+	const [validationPrompt, setValidationPrompt] = useState(false);
 	const [rememberedDevice, setRememberedDevice] = useState(false);
 	const [submitForm, setSubmitForm] = useState({
 		submissionState: false,
@@ -32,6 +33,7 @@ const App = () => {
 		setValidForm(false);
 		setTouched(false);
 		setRememberedDevice(false);
+		setValidationPrompt(false);
 		inputRef.current.blur();
 		checkRef.current.checked = false;
 	}
@@ -50,15 +52,17 @@ const App = () => {
 		e.preventDefault();
 		const currentEmailValue = emailStateValue;
 		const currentRememberedDevice = rememberedDevice;
-		if (emailStateValue) {
-			setSubmitForm({
-				submissionState: true,
-				emailValue: currentEmailValue,
-				deviceRemembered: currentRememberedDevice
-			});
-			initialStateHandler();
-		}
+		setSubmitForm({
+			submissionState: true,
+			emailValue: currentEmailValue,
+			deviceRemembered: currentRememberedDevice
+		});
+		initialStateHandler();
 	}
+
+	// Adding validation prompt to signal to the user that they have incorrect information, this will switch back to true again when
+	// it finds a valid input for the email field
+	const formCheckValidityHandler = () => !validForm && setValidationPrompt(true);
 
 	// Form submission state is set back to false so form can be done again.
 	const goBackHandler = () => {
@@ -87,8 +91,10 @@ const App = () => {
 	// Setting value of the input in state & checking validity of input field
 	const inputChangedHandler = (event, inputIdentifier) => {
 		const inputText = event.target.value;
+		const validityCheck = checkValidity(inputText, inputIdentifier);
 		setTouched(inputText ? true : false);
-		setValidForm(checkValidity(inputText, inputIdentifier))
+		setValidForm(validityCheck);
+		validityCheck && setValidationPrompt(false);
 		setEmailStateValue(inputText);
 	}
 
@@ -104,7 +110,7 @@ const App = () => {
 				<img className={classes.MainLogo} src={Logo} alt="Main Logo" />
 				<h2 className={classes.LoginFormHeading}>Operations Studio</h2>
 				<p className={classes.MutedText}>Please enter your email below</p>
-				<form className={classes.LoginForm} onSubmit={formSubmitHandler}>
+				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => e.which === 13 && formCheckValidityHandler(e, { isEmail: true })}>
 					<Input
 						label="Email Address"
 						elementType="input"
@@ -113,7 +119,7 @@ const App = () => {
 						value={emailStateValue}
 						invalid={!emailValidity}
 						shouldValidate={true}
-						touched={touched}
+						touched={touched && validationPrompt}
 						changed={(e) => inputChangedHandler(e, { isEmail: true })} />
 					<div className={classes.RememberMeCheckbox}>
 						<input ref={checkRef} type="checkbox" onChange={rememberedDeviceChangedHandler} />
