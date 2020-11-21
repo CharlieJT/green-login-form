@@ -100,8 +100,8 @@ const App = () => {
 		<div className={classes.App}>
 			<Modal show={modalOpen} modalClose={closeModalHandler}>
 				<img className={classes.MainLogo} src={Logo} alt="Main Logo" />
-				<h2 className={classes.LoginFormHeading}>Example login screen</h2>
-				<p className={classes.MutedText}>Getting started with Green.</p>
+				<h2 className={classes.LoginFormHeading}>Operations Studio</h2>
+				<p className={classes.MutedText}>Please enter your email below</p>
 				<form className={classes.LoginForm} onSubmit={formSubmitHandler}>
 					<Input
 						label="Email Address"
