@@ -55,7 +55,7 @@
           border: 1px solid #ccc;
         }
         input:checked ~ .Checkmark {
-          background-color: #2196F3;
+          background-color: $checkbox-color;
           height: 20px;
           width: 20px;
           border: none;
