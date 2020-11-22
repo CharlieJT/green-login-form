@@ -106,13 +106,19 @@ const App = () => {
 		setRememberedDevice(currentDeviceState);
 	}
 
+	// Object descructuring submitForm object in state
+	const { submissionState, emailValue, deviceRemembered } = submitForm;
+
+	// Object descructuring classnames set up with sass modules
+	const { App, MainLogo, LoginFormHeading, MutedText, LoginForm, RememberMeCheckbox, CheckboxContainer, Checkmark, InputEnteredText, FormSubmissionList } = classes;
+
 	return (
-		<div className={classes.App}>
+		<div className={App}>
 			<Modal show={modalOpen} modalClose={closeModalHandler}>
-				<img className={classes.MainLogo} src={Logo} alt="Main Logo" />
-				<h2 className={classes.LoginFormHeading}>Operations Studio</h2>
-				<p className={classes.MutedText}>Please enter your email below</p>
-				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => {
+				<img className={MainLogo} src={Logo} alt="Main Logo" />
+				<h2 className={LoginFormHeading}>Operations Studio</h2>
+				<p className={MutedText}>Please enter your email below</p>
+				<form className={LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => {
 					(e.which === 13  && emailStateValue.length > 0) && formCheckValidityHandler(e, { isEmail: true })}
 				}>
 					<Input
@@ -125,27 +131,27 @@ const App = () => {
 						shouldValidate={true}
 						touched={touched && validationPrompt}
 						changed={(e) => inputChangedHandler(e, { isEmail: true })} />
-					<div className={classes.RememberMeCheckbox}>
-						<label className={classes.CheckboxContainer}>
+					<div className={RememberMeCheckbox}>
+						<label className={CheckboxContainer}>
 							<input ref={checkRef} type="checkbox" onChange={rememberedDeviceChangedHandler} />
-							<span className={classes.Checkmark}></span>
+							<span className={Checkmark}></span>
 							<span>Remember this device</span>
 						</label>
 					</div>
 					<Button btnType="Success" disabled={(!validForm || /^\s*$/.test(validForm)) || emailStateValue.length < 1}>Sign In</Button>
 				</form>
 			</Modal>
-			<div className={classes.InputEnteredText}>
-				{!submitForm.submissionState ?
+			<div className={InputEnteredText}>
+				{!submissionState ?
 					<Aux>
 						<h3>Click to Sign In</h3>
 						<Button clicked={openModalHandler} btnType="General">Sign In</Button>
 					</Aux> :
 					<Aux>
 						<h3>Successful Sign In so form must have been valid</h3>
-						<ul className={classes.FormSubmissionList}>
-							<li>Email: <b>{submitForm.emailValue}</b></li>
-							<li>Remembered: <b>{submitForm.deviceRemembered ? "Yes" : "No"}</b></li>
+						<ul className={FormSubmissionList}>
+							<li>Email: <b>{emailValue}</b></li>
+							<li>Remembered: <b>{deviceRemembered ? "Yes" : "No"}</b></li>
 						</ul>
 						<Button clicked={goBackHandler} btnType="General">Go Back</Button>
 					</Aux>
