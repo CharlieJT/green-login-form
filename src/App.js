@@ -112,7 +112,7 @@ const App = () => {
 				<img className={classes.MainLogo} src={Logo} alt="Main Logo" />
 				<h2 className={classes.LoginFormHeading}>Operations Studio</h2>
 				<p className={classes.MutedText}>Please enter your email below</p>
-				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => e.which === 13 && formCheckValidityHandler(e, { isEmail: true })}>
+				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => (e.which === 13  && emailStateValue.length > 0) && formCheckValidityHandler(e, { isEmail: true })}>
 					<Input
 						label="Email Address"
 						elementType="input"
