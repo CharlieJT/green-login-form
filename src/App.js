@@ -8,7 +8,7 @@ import Aux from './hoc/ReactAux';
 
 const App = () => {
 
-	// Input Referrences
+	// Input References
 	const inputRef = useRef();
 	const checkRef = useRef();
 
