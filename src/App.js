@@ -51,10 +51,10 @@ const App = () => {
 	}
 
 	// Modal state set to false which will close modal & then set all values back to their default value in state
-	const closeModalHandler = e => initialStateHandler();
+	const closeModalHandler = () => initialStateHandler();
 
 	// Form submission handler will set state back to initial state & set to show a form has been submitted sucessfully
-	const formSubmitHandler = (e) => {
+	const formSubmitHandler = e => {
 		e.preventDefault();
 		const currentEmailValue = emailStateValue;
 		const currentRememberedDevice = rememberedDevice;
@@ -107,7 +107,7 @@ const App = () => {
 	}
 
 	// Setting value of the checkbox in state, no validity taking place because not required
-	const rememberedDeviceChangedHandler = (event) => {
+	const rememberedDeviceChangedHandler = event => {
 		const currentDeviceState = event.target.checked;
 		setRememberedDevice(currentDeviceState);
 	}
