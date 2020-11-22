@@ -112,7 +112,9 @@ const App = () => {
 				<img className={classes.MainLogo} src={Logo} alt="Main Logo" />
 				<h2 className={classes.LoginFormHeading}>Operations Studio</h2>
 				<p className={classes.MutedText}>Please enter your email below</p>
-				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => (e.which === 13  && emailStateValue.length > 0) && formCheckValidityHandler(e, { isEmail: true })}>
+				<form className={classes.LoginForm} onSubmit={formSubmitHandler} onKeyPress={e => {
+					(e.which === 13  && emailStateValue.length > 0) && formCheckValidityHandler(e, { isEmail: true })}
+				}>
 					<Input
 						label="Email Address"
 						elementType="input"
@@ -124,8 +126,11 @@ const App = () => {
 						touched={touched && validationPrompt}
 						changed={(e) => inputChangedHandler(e, { isEmail: true })} />
 					<div className={classes.RememberMeCheckbox}>
-						<input ref={checkRef} type="checkbox" onChange={rememberedDeviceChangedHandler} />
-						<span>Remember this device</span>
+						<label className={classes.CheckboxContainer}>
+							<input ref={checkRef} type="checkbox" onChange={rememberedDeviceChangedHandler} />
+							<span className={classes.Checkmark}></span>
+							<span>Remember this device</span>
+						</label>
 					</div>
 					<Button btnType="Success" disabled={(!validForm || /^\s*$/.test(validForm)) || emailStateValue.length < 1}>Sign In</Button>
 				</form>
