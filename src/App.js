@@ -106,10 +106,10 @@ const App = () => {
 		setRememberedDevice(currentDeviceState);
 	}
 
-	// Object descructuring submitForm object in state
+	// Object destructuring submitForm object in state
 	const { submissionState, emailValue, deviceRemembered } = submitForm;
 
-	// Object descructuring classnames set up with sass modules
+	// Object destructuring classnames set up with sass modules
 	const { App, MainLogo, LoginFormHeading, MutedText, LoginForm, RememberMeCheckbox, CheckboxContainer, Checkmark, InputEnteredText, FormSubmissionList } = classes;
 
 	return (
