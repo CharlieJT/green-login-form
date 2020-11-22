@@ -32,13 +32,16 @@ const App = () => {
 	// All state will be set back to their default values
 	const initialStateHandler = () => {
 		setModalOpen(false);
-		setEmailStateValue('');
-		setValidForm(false);
-		setTouched(false);
-		setRememberedDevice(true);
-		setValidationPrompt(false);
+		// As values can be seen changing as modal closes, timeout has been set to ensure modal has completely disappeared before state is changed
+		setTimeout(() => {
+			setEmailStateValue('');
+			setRememberedDevice(true);
+			checkRef.current.checked = true;
+			setValidForm(false);
+			setTouched(false);
+			setValidationPrompt(false);
+		}, 300);
 		inputRef.current.blur();
-		checkRef.current.checked = true;
 	}
 
 	// Modal state set to true which will open modal & will focus in on the email input field
