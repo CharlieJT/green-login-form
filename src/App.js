@@ -52,12 +52,14 @@ const App = () => {
 		e.preventDefault();
 		const currentEmailValue = emailStateValue;
 		const currentRememberedDevice = rememberedDevice;
-		setSubmitForm({
-			submissionState: true,
-			emailValue: currentEmailValue,
-			deviceRemembered: currentRememberedDevice
-		});
-		initialStateHandler();
+		if (emailStateValue.length > 0) {
+			setSubmitForm({
+				submissionState: true,
+				emailValue: currentEmailValue,
+				deviceRemembered: currentRememberedDevice
+			});
+			initialStateHandler();
+		}
 	}
 
 	// Adding validation prompt to signal to the user that they have incorrect information, this will switch back to true again when
@@ -125,7 +127,7 @@ const App = () => {
 						<input ref={checkRef} type="checkbox" onChange={rememberedDeviceChangedHandler} />
 						<span>Remember this device</span>
 					</div>
-					<Button btnType="Success" disabled={!validForm || /^\s*$/.test(validForm)}>Sign In</Button>
+					<Button btnType="Success" disabled={(!validForm || /^\s*$/.test(validForm)) || emailStateValue.length < 1}>Sign In</Button>
 				</form>
 			</Modal>
 			<div className={classes.InputEnteredText}>
