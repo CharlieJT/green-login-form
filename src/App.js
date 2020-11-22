@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Logo from './logos/logo-r.svg';
 import classes from './App.module.scss';
 import Modal from './Components/UI/Modal/Modal';
@@ -19,12 +19,15 @@ const App = () => {
 	const [validForm, setValidForm] = useState(false);
 	const [touched, setTouched] = useState(false);
 	const [validationPrompt, setValidationPrompt] = useState(false);
-	const [rememberedDevice, setRememberedDevice] = useState(false);
+	const [rememberedDevice, setRememberedDevice] = useState(true);
 	const [submitForm, setSubmitForm] = useState({
 		submissionState: false,
 		emailValue: '',
 		deviceRemembered: false
 	});
+
+	// Setting the default of "Remember this device" to true when application loads
+	useEffect(() => checkRef.current.checked = true, []);
 
 	// All state will be set back to their default values
 	const initialStateHandler = () => {
@@ -32,10 +35,10 @@ const App = () => {
 		setEmailStateValue('');
 		setValidForm(false);
 		setTouched(false);
-		setRememberedDevice(false);
+		setRememberedDevice(true);
 		setValidationPrompt(false);
 		inputRef.current.blur();
-		checkRef.current.checked = false;
+		checkRef.current.checked = true;
 	}
 
 	// Modal state set to true which will open modal & will focus in on the email input field
